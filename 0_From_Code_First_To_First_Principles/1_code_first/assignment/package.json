@@ -6,7 +6,7 @@
     "scripts": {
       "build": "tsc",
       "start:dev": "npx nodemon",
-      "start": "ts-node app.ts",
+      "start": "ts-node src/index.ts",
       "lint": "eslint . --ext .ts",
       "prettier-format": "run-script-os",
       "prettier-format:win32": "prettier --config .prettierrc \"./src/**/*.ts\" --write",
