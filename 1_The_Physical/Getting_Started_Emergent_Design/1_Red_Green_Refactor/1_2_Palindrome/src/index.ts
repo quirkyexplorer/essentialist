@@ -1,5 +1,6 @@
 export function isItPalindrome(input: String): boolean {
-
-
-    return true;
+    
+    const result = input.split('').reverse().join('').toLowerCase();
+   // console.log(result);
+    return result === input.toLowerCase();
 } 
