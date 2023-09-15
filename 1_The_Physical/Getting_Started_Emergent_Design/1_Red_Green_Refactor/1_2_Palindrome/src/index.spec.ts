@@ -1,35 +1,42 @@
-import { isItPalindrome } from './index'
+import { PalindromeCheck } from './index'
 
 describe('palindrome checker', () => {
 
-    it('detects a string "wow" is a palindrome', () => {
-        const result = isItPalindrome('wow');
-        expect(result).toBeTruthy();
-    }); 
+    let palindromeCheck: PalindromeCheck;
 
-    it('detects string "Wow" is still a palindrome', () => {
-        const result = isItPalindrome('Wow');
-        expect(result).toBeTruthy();
+    beforeEach(() => {
+        palindromeCheck = new PalindromeCheck();
     });
 
-    it('detects string "WoW" is still a palindrome', () => {
-        const result = isItPalindrome('WoW');
-        expect(result).toBeTruthy();
-    });
+    const testCases: [string, boolean][] = [
+        ["wow", true],
+        ["Wow", true],
+        ["WoW", true],
+        ["WoWx", false],
+        ["xWowx", true],
+    ];
+    
+    it.each(testCases)(
+        'detects string "%s" is palindrome: %p',
+        (input: string, expected: boolean) => {
+            expect(palindromeCheck.isItPalindrome(input)).toBe(expected);
+        }
+    );
 
-    it('detects string "WoWx" is not a palindrome', () => {
-        const result = isItPalindrome('WoWx');
-        expect(result).toBeFalsy();
-    });
+    const phraseCases: [string, boolean][] = [
+        ["Was It A Rat I Saw", true],
+        ["Never Odd or Even", true],
+        ["Never Odd or Even1", false],
+        ["1Never Odd or Even1", true]
+    ];
 
-    it('detects string "xWowx" is still a palindrome', () => {
-        const result = isItPalindrome('xWowx');
-        expect(result).toBeTruthy();
-    });
+    it.each(phraseCases)(
+        'detects string "%s" is palindrome: %p',
+        (input: string, expected: boolean) => {
+            expect(palindromeCheck.isItPalindrome(input)).toBe(expected);
+        }
+    );
 
-    it('detects string "Was It A Rat I Saw" is still a palindrome', () => {
-        const result = isItPalindrome('Was It A Rat I Saw');
-        expect(result).toBeTruthy();
-    });
 
 })
+
