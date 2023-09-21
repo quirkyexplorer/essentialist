@@ -7,16 +7,21 @@ export function fizzbuzz(input: number): string {
         }
     }
 
+    function buzz(input: number) {
+        if(input % 5 === 0) {
+            return true;
+        }
+    }
    
 
     switch (true) {
-        case input % 3 === 0 && input % 5 === 0:
+        case fizz(input) && buzz(input):
             return "fizzbuzz";
         case input < 0:
             return "error negative number";
         case fizz(input):
             return "fizz";
-        case input % 5 === 0:
+        case buzz(input):
             return "buzz";
         default:
             return input.toString();
