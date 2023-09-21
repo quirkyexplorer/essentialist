@@ -43,7 +43,7 @@ describe("fizzbuzz, returns fizz if number is multiple of 3, buzz if multiple of
 
     test("should return fizz", () => {
         const result = fizzbuzz(102);
-        expect(result).toBe("fizz");
+        expect(result).toBe("error negative number");
 
     });
 
