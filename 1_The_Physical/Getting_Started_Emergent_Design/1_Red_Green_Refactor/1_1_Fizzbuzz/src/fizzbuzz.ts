@@ -15,10 +15,10 @@ export function fizzbuzz(input: number): string {
    
 
     switch (true) {
+        case input < 0 || input > 100:
+            return "error negative number";
         case fizz(input) && buzz(input):
             return "fizzbuzz";
-        case input < 0:
-            return "error negative number";
         case fizz(input):
             return "fizz";
         case buzz(input):
