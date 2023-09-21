@@ -16,7 +16,7 @@ export function fizzbuzz(input: number): string {
 
     switch (true) {
         case input < 0 || input > 100:
-            return "error negative number";
+            return "error: input out of range, should be between 1 & 100";
         case fizz(input) && buzz(input):
             return "fizzbuzz";
         case fizz(input):
