@@ -1,11 +1,17 @@
 
 export function fizzbuzz(input: number): string {
+
+    function fizz(input: number) {
+        
+
+    }
+
     switch (true) {
         case input % 3 === 0 && input % 5 === 0:
             return "fizzbuzz";
         case input < 0:
             return "error negative number";
-        case input % 3 === 0:
+        case fizz(input):
             return "fizz";
         case input % 5 === 0:
             return "buzz";
