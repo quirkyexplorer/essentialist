@@ -4,7 +4,7 @@ export default function validate(input: string) {
 
     const message = {
         isValid: true,
-        error: 'valid password'
+        error: null as null | string // type assertion in typescript, error can be either null or string
     }
 
     if (input.length < 5 || input.length > 15) {
