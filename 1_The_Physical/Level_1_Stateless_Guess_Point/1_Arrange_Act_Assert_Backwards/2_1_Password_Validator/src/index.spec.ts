@@ -126,7 +126,7 @@ it('tests if acclimatization is invalid and matches errors', () =>{
         }
     }
 
-    const result = validate('extraterrestrial');
+    const result = validate('acclimatization');
     expect(result).toEqual(expected);
 })
 
@@ -139,7 +139,7 @@ it('tests if acclimatization is invalid and matches errors', () =>{
         }
     }
 
-    const result = validate('extraterrestrial');
+    const result = validate('ocean11');
     expect(result).toEqual(expected);
   })
 
@@ -153,7 +153,7 @@ it('tests if Cat1 is invalid and matches errors', () =>{
         }
     }
 
-    const result = validate('Cats1');
+    const result = validate('Cat1');
     expect(result).toEqual(expected);
 })
 
