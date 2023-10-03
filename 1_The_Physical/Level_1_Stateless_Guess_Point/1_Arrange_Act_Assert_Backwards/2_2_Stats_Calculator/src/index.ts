@@ -27,12 +27,14 @@ const stats: Stats = {
     min: 0,
     max: 0,
     average: 0,
-    length: 0,
-    error: 'invalid data'
+    length: 1,
+    error: null
 }
 
-function findMin(){
-
+function findMin(numbers: number[]){
+    for(let i = 0; i < numbers.length; i++) {
+        console.log("working");
+    }
 }
 
 function findMax(){
@@ -49,6 +51,7 @@ function findLength() {
 
 export default function findStats(numbers: number[]) {
 
+    const result = findMin(numbers);
 
 
     return (
