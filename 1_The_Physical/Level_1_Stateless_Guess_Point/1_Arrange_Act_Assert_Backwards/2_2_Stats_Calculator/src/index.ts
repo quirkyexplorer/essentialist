@@ -15,21 +15,13 @@
 
 
 interface Stats {
-    min: number;
-    max: number;
-    average: number;
-    length: number;
+    min: number | null;
+    max:  number | null;
+    average:  number | null;
+    length:  number | null;
     error: string | null;
 }
 
-// creating an object based on the interface 
-const stats: Stats = {
-    min: 0,
-    max: 0,
-    average: 0,
-    length: 1,
-    error: null
-}
 
 function findMin(numbers: number[]){
     let min = numbers[0];
@@ -52,27 +44,37 @@ function findMax(numbers: number[]){
 }
 
 function findAverage(numbers: number[]) {
-    let sum = 0;
-    for(let i = 0; i < numbers.length; i++) {
-        sum = sum + numbers[i];
-    }
-    return  sum/numbers.length
+    return numbers.reduce((accumulator, num) => accumulator + num, 0) / numbers.length;
+
 }
 
 function findLength(numbers: number[]) {
     return numbers.length;
 }
 
+function createStats(numbers: number[]) {
+    // creating initial object based on the interface 
+    const stats: Stats = {
+        min: null,
+        max: null,
+        average: null,
+        length: null,
+        error: null
+    }
+    
+    if (numbers.length === 0) {
+        stats.error = 'invalid input';
+    } else {
+        stats.min = findMin(numbers);
+        stats.max = findMax(numbers);
+        stats.average = findAverage(numbers);
+        stats.length = findLength(numbers);
+    }
+
+    return stats
+}
+
 export default function findStats(numbers: number[]) {
 
-    const resultMin = findMin(numbers);
-
-    stats.min = findMin(numbers);
-    stats.max = findMax(numbers);
-    stats.average = findAverage(numbers);
-    stats.length = findLength(numbers);
-
-    return (
-        stats
-    );
+    return createStats(numbers);
 }
