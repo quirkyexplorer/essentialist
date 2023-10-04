@@ -32,27 +32,45 @@ const stats: Stats = {
 }
 
 function findMin(numbers: number[]){
+    let min = numbers[0];
     for(let i = 0; i < numbers.length; i++) {
-        console.log("working");
+        if (numbers[i] < min ) {
+            min = numbers[i];
+        } 
     }
+    return min;
 }
 
-function findMax(){
-
+function findMax(numbers: number[]){
+    let max = numbers[0];
+    for(let i = 0; i < numbers.length; i++) {
+        if (numbers[i] > max) {
+            max = numbers[i];
+        }
+    }
+    return max
 }
 
-function findAverage() {
-
+function findAverage(numbers: number[]) {
+    let sum = 0;
+    for(let i = 0; i < numbers.length; i++) {
+        sum = sum + numbers[i];
+    }
+    return  sum/numbers.length
 }
 
-function findLength() {
-
+function findLength(numbers: number[]) {
+    return numbers.length;
 }
 
 export default function findStats(numbers: number[]) {
 
-    const result = findMin(numbers);
+    const resultMin = findMin(numbers);
 
+    stats.min = findMin(numbers);
+    stats.max = findMax(numbers);
+    stats.average = findAverage(numbers);
+    stats.length = findLength(numbers);
 
     return (
         stats

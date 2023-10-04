@@ -42,8 +42,8 @@ describe('stats calculator', () => {
 
     it('calculates stats for [1, 2]', () => {
         const stats = findStats(answerArr[1].arr);
+        console.log(stats);
         expect(stats).toEqual(answerArr[1].object);
     });
-
 
 });
