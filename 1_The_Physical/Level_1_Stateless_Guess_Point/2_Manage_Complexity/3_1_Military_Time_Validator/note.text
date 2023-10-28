@@ -1,0 +1,74 @@
+
+validate whether a string time range is in military time or not 
+
+"01:12 - 14:32" (yes)
+"25:00 - 12:23" (no)
+"22:00 - 23:12" (yes)
+
+responsibilities : 
+    we need to compare wether the time given is between 00 and 24 for hours, 
+    compare if times are between 00 and 59 for min. 
+    the second times always needs to be bigger than the first
+
+    string needs to be broken apart into 2, 
+    analyze the hours, in each one 
+    then the min in each one,
+    then against each other. 
+
+    there are three comparison moments, hours, mins, times. 
+
+    lowest times is 00:00
+
+    highest is 23:59
+
+examples : 
+
+  a failing case - "25:00 - 12:23" (no)
+
+  test for hours - 1 - 5 
+  test for min  - 1:30 - 15:05
+
+  failing case for hours:       5:00 - 3:00
+  failing case for min(edge): 5:01 - 5:00
+  failing case for min(edge): 12:00 - 12:00
+  failing case for hours(edge): 12:00 - 11:59
+
+  passing case for the whole day: 00:00 - 23:59
+  passing case for hours:        3:05 - 20:10
+  passing case for min(edge):   3:01 - 3:02
+  passing case for hours:       3:59 - 4:00
+
+
+
+pseudo code: 
+
+valid = true;
+invalid = false;
+
+timeRange = "25:00 - 12:23";
+time1 = 25:00
+time2 = 12:23
+
+time1.hour = 25
+time1.min = 00
+
+time2.hour = 12
+time2.min = 23
+
+if time1.hour, time.2hour, time1.min, time2.min < 0
+    return invalid 
+
+if (time1.hour || time2.hour > 23);
+    return invalid
+
+if time1.min || time2.min > 59
+    return invalid 
+
+if  time1.hour > time2.hour
+    return invalid 
+
+if time1.hour == time2.hour && time1.min >= time2.min
+    return invalid 
+
+return valid. 
+    
