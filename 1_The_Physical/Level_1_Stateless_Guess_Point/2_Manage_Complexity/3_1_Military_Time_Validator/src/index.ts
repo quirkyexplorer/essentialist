@@ -20,10 +20,18 @@ export default function validateRange(timeRange: string): boolean{
     const valid = true;
     const invalid = false;
 
-    const time = timeRangeBreakUp(timeRange);
+    const {time1, time2} = timeRangeBreakUp(timeRange);
 
-    if (time.time1.hour == time.time2.hour && time.time1.min >= time.time2.min)
-    return invalid 
+    console.log(time1,time2);
+
+    if (time1.hour == time2.hour && time1.min >= time2.min)
+        return invalid 
+
+    if (time1.hour > 23 || time2.hour > 23)
+        return invalid
+
+    if (time1.min > 59 || time2.min > 59)
+        return invalid
 
     return valid;
 }

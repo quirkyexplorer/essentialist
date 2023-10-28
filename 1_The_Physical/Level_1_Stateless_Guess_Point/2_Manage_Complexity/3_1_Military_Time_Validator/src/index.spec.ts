@@ -13,4 +13,13 @@ describe('military time validator failing tests', () => {
     it('knows 05:06 - 05:05 is an invalid range', () => {
         expect(validateRange('05:06 - 05:05')).toBe(false);
     })
+
+
+    it('knows 05:06 - 25:04 is an invalid range', () => {
+        expect(validateRange('05:06 - 25:04')).toBe(false);
+    })
+
+    it('knows 05:06 - 6:60 is an invalid range', () => {
+        expect(validateRange('05:06 - 6:60')).toBe(false);
+    })
 })
