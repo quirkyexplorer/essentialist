@@ -1,83 +1,125 @@
 import validateRange from './index'
 
-describe('military time validator passing tests', () => {
+const validTimeCases: {time: string; answer: boolean}[] = [
 
-    it('knows if range occurs in the same hour, the right relation between starting and ending minutes', () => {
-        expect(validateRange('05:05 - 05:06')).toBe(true);
-    })
+    { 
+    time: '05:05 - 05:06',
+    answer: true 
+    },
 
-    it('checks for validy between times with the same minutes different hours', () => {
-        expect(validateRange('05:06 - 07:06')).toBe(true);
-    })
+    { 
+    time: '05:06 - 07:06',
+    answer: true 
+    },
+
+    { 
+    time: '00:00 - 23:59',
+    answer: true 
+    },
+
+    { 
+    time: '00:59 - 01:00',
+    answer: true 
+    },
+    
+]
+
+const invalidTimeCases: {time: string; answer: boolean}[] = [
+
+    { 
+    time: '05:06 - 25:04',
+    answer: false 
+    },
+    { 
+        time: '26:06 - 27:04',
+        answer: false 
+    },
+    { 
+        time: '05:06 - 6:60',
+        answer: false 
+    },
+    { 
+        time: '06:36 - 05:06',
+        answer: false 
+    },
+    { 
+        time: '05:06 - 05:05',
+        answer: false 
+    },
+    
+]
+
+
+const wrongFormatCases: {time: string; answer: boolean}[] = [
+    { 
+        time: '5:06 - 07:06',
+        answer: false
+    },
+    { 
+        time: '05:006 - 07:06',
+        answer: false
+    },
+    { 
+        time: ': - :',
+        answer: false
+    },
+    { 
+        time: '0:0 - 0:0',
+        answer: false
+    },
+    { 
+        time: '',
+        answer: false
+    },
+    { 
+        time: '00:00-01:02',
+        answer: false
+    },
+    { 
+        time: '00-000:1:02',
+        answer: false
+    },
+    { 
+        time: ' - 0000:1:02',
+        answer: false
+    },
+]
+
+
+describe('military time validator valid times', () => {
+
+    it.each(validTimeCases)(
+        'knows the validity in times in  $time to be $answer',
+        ({time, answer}) => {
+            const validation = validateRange(time);
+            expect(validation).toBe(answer);
+        }
+    )
 })
 
 
-describe('military time validator failing tests', () => {
+describe('tests for wrong times', () => {
 
-    it('knows there is a discrepancy in hours bigger than 23 ', () => {
-        expect(validateRange('05:06 - 25:04')).toBe(false);
-    })
-
-    it('knows there is a discrepancy in hours bigger than 23 ', () => {
-        expect(validateRange('26:06 - 27:04')).toBe(false);
-    })
-
-    it('finds discrepancy in minutes bigger than 59', () => {
-        expect(validateRange('05:06 - 6:60')).toBe(false);
-    })
-
-    it('finds discrepancy in starting hours being bigger than ending hours', () => {
-        expect(validateRange('06:36 - 05:06')).toBe(false);
-    })
-
-    it('knows if range occurs in the same hour, the starting minutes cannot be bigger than ending minutes', () => {
-        expect(validateRange('05:06 - 05:05')).toBe(false);
+    it.each(invalidTimeCases)(
+        `knows the validity in times in  $time to be $answer`, 
+        ({time, answer}) => {
+            const [start, end] = time.split(" - ");
+            const description = `knows there is a discrepancy between ${start} and ${end}`;
+            const validation = validateRange(time);
+            expect(validation).toBe(answer);
     })
 
 
-
-describe('invalidates for wrong formats', () => {
-
-    it('knows validy of format 5:06 - 07:06 to be false', () => {
-        expect(validateRange('5:06 - 07:06')).toBe(false);
-    })
-
-    it('knows validy of format 05:006 - 07:06 to be false', () => {
-        expect(validateRange('05:006 - 07:06')).toBe(false);
-    })
-
-    it('knows validy of format : - : to be false', () => {
-        expect(validateRange(': - :')).toBe(false);
-    })
-
-    it('knows validy of format 0:0 - 0:0 to be false', () => {
-        expect(validateRange(': - :')).toBe(false);
-    })
-
-    it('knows validy of format ""  to be false', () => {
-        expect(validateRange('')).toBe(false);
-    })
-
-    it('knows validy of format  05:06 05:05 to be false', () => {
-        expect(validateRange('05:06 05:05')).toBe(false);
-    })
-
-    it('knows validy of format  05-06 : 05-05 to be false', () => {
-        expect(validateRange('05-06 : 05-05')).toBe(false);
-    })
-
-    it('knows validy of format  00:00-01:02 to be false', () => {
-        expect(validateRange('00:00-01:02')).toBe(false);
-    })
-
-    it('knows validy of format  00-000:1:02 to be false', () => {
-        expect(validateRange('00-000:1:02')).toBe(false);
-    })
-
-    it('knows validy of format " - 0000:1:02" to be false', () => {
-        expect(validateRange(' - 0000:1:02')).toBe(false);
-    })
 })
+
+describe('tests for wrong formats', () => {
+
+    it.each(wrongFormatCases)('knows validy of $time to be $answer', 
+        ({time, answer}) => {
+            const validation = validateRange(time);
+            expect(validation).toBe(answer);
+    })
+
 
 
 })
