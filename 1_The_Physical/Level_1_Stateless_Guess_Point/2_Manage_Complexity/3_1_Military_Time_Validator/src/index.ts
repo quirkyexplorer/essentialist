@@ -1,27 +1,23 @@
 
-import { time } from "console";
-
 
 export default function validateRange(timeRange: string): boolean{
 
     if (timeRange == '')
         return false
 
-    if (timeRange.indexOf('-') == -1 || timeRange.split('-').length != 2)
+    if (timeRange.indexOf(' - ') == -1 || timeRange.split('-').length != 2) 
         return false
-
+    
     if (timeRange.indexOf(':') == -1 || timeRange.split(':').length != 3)
         return false
 
-    const time = timeRange.split(" - ");
+
+    const time = timeRange.split(" - ")
     const hour1 = time[0].slice(0,2);
     const hour2 = time[1].slice(0,2);
     const [, minutes1]  = time[0].split(':');
     const [, minutes2] = time[1].split(':');
 
-    console.log(minutes1);
-
-    
 
     if (hour1.length !=2 || minutes1.length != 2 || hour2.length !=2 || minutes2.length != 2)
         return false

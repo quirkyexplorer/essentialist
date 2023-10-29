@@ -66,9 +66,17 @@ describe('invalidates for wrong formats', () => {
         expect(validateRange('05-06 : 05-05')).toBe(false);
     })
 
-    // it('knows validy of format  00:00-01:02 to be false', () => {
-    //     expect(validateRange('00:00-01:02')).toBe(false);
-    // })
+    it('knows validy of format  00:00-01:02 to be false', () => {
+        expect(validateRange('00:00-01:02')).toBe(false);
+    })
+
+    it('knows validy of format  00-000:1:02 to be false', () => {
+        expect(validateRange('00-000:1:02')).toBe(false);
+    })
+
+    it('knows validy of format " - 0000:1:02" to be false', () => {
+        expect(validateRange(' - 0000:1:02')).toBe(false);
+    })
 })
 
 
