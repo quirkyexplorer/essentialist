@@ -36,11 +36,39 @@ describe('military time validator failing tests', () => {
 
 
 
-// describe('invalidates for wrong format', () => {
+describe('invalidates for wrong formats', () => {
 
-//     it('checks for validy of format 5:06 - 07:06', () => {
-//         expect(validateRange('5:06 - 07:06')).toBe(false);
-//     })
+    it('knows validy of format 5:06 - 07:06 to be false', () => {
+        expect(validateRange('5:06 - 07:06')).toBe(false);
+    })
+
+    it('knows validy of format 05:006 - 07:06 to be false', () => {
+        expect(validateRange('05:006 - 07:06')).toBe(false);
+    })
+
+    it('knows validy of format : - : to be false', () => {
+        expect(validateRange(': - :')).toBe(false);
+    })
+
+    it('knows validy of format 0:0 - 0:0 to be false', () => {
+        expect(validateRange(': - :')).toBe(false);
+    })
+
+    it('knows validy of format ""  to be false', () => {
+        expect(validateRange('')).toBe(false);
+    })
+
+    it('knows validy of format  05:06 05:05 to be false', () => {
+        expect(validateRange('05:06 05:05')).toBe(false);
+    })
+
+    it('knows validy of format  05-06 : 05-05 to be false', () => {
+        expect(validateRange('05-06 : 05-05')).toBe(false);
+    })
+
+    // it('knows validy of format  00:00-01:02 to be false', () => {
+    //     expect(validateRange('00:00-01:02')).toBe(false);
+    // })
 })
 
 
