@@ -64,7 +64,7 @@ if (time1.hour || time2.hour > 23);  check
 if time1.min || time2.min > 59  check
     return invalid 
 
-if  time1.hour > time2.hour
+if  time1.hour > time2.hour  check
     return invalid 
 
 if time1.hour == time2.hour && time1.min >= time2.min  check

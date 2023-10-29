@@ -33,5 +33,8 @@ export default function validateRange(timeRange: string): boolean{
     if (time1.min > 59 || time2.min > 59)
         return invalid
 
+    if (time1.hour > time2.hour )
+        return invalid 
+    
     return valid;
 }
