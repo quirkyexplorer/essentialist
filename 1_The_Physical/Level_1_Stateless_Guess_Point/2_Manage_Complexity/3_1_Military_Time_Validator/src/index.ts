@@ -1,40 +1,23 @@
 
-function timeRangeBreakUp(timeRange: string) {
-
-    let array = timeRange.split(/[ :-]/).filter(Boolean).map(number => parseInt(number)) ;
-    
-    const time1 = {
-        hour: array[0],
-        min: array[1]
-    }
-    const time2 = {
-        hour: array[2],
-        min: array[3]
-    }
-
-    return {time1, time2};
-}
+import { time } from "console";
 
 
 export default function validateRange(timeRange: string): boolean{
-    const valid = true;
-    const invalid = false;
 
-    const {time1, time2} = timeRangeBreakUp(timeRange);
-
-    console.log(time1,time2);
-
-    if (time1.hour == time2.hour && time1.min >= time2.min)
-        return invalid 
-
-    if (time1.hour > 23 || time2.hour > 23)
-        return invalid
-
-    if (time1.min > 59 || time2.min > 59)
-        return invalid
-
-    if (time1.hour > time2.hour )
-        return invalid 
+    const time = timeRange.split(" - ");
+    const hour1 = time[0].slice(0,2);
+    const hour2 = time[1].slice(0, 2);
+    const minutes1 = time[0].slice(-2);
+    const minutes2 = time[0].slice(-2);
     
-    return valid;
+    if (time[0] > time[1])
+        return false;
+
+    if ( hour1 > '23' || hour2 > '23')
+        return false;
+
+    if ( minutes1 > '59' || minutes2 > '59')
+        return false;
+    
+    return true;
 }
