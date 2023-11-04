@@ -1,0 +1,37 @@
+
+single values 
+"TRUE" = True
+"FALSE" = False
+
+
+operators 
+NOT
+"NOT TRUE" -> false
+
+AND operator
+
+"TRUE AND FALSE" -> false "TRUE AND TRUE" -> true
+
+OR operator
+
+"TRUE OR FALSE" -> true "FALSE OR FALSE" -> false
+
+Parentheses
+
+"(TRUE OR TRUE OR TRUE) AND FALSE" -> false "NOT (TRUE AND TRUE)" -> false
+
+responsibilities: 
+
+a function to parse through the string and find all individual words. extract them 
+
+a function to find Parentheses
+
+a function to apply logic 
+
+        a function to convert from words to actual boolean code
+        
+
+a function to make sure the string passed is a valid one. 
+
+
+
