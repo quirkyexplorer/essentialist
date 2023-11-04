@@ -30,6 +30,10 @@ export function EvaluateBoolean(value: string) {
             return false
         }
 
+        if (array[0] != array[2]) {
+            return false
+        }
+
     }
 
 

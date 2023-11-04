@@ -37,4 +37,16 @@ describe('boolean calculator', () => {
     expect(result).toBe(false);
   })
 
+  it('FALSE AND TRUE to be false',() =>{
+
+    const result = EvaluateBoolean("FALSE AND TRUE");
+    expect(result).toBe(false);
+  })
+
+  it('TRUE AND FALSE to be false',() =>{
+
+    const result = EvaluateBoolean("FALSE AND TRUE");
+    expect(result).toBe(false);
+  })
+
 })
