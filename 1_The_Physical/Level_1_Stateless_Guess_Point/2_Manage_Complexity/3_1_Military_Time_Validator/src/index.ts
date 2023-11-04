@@ -12,7 +12,10 @@ function evaluateSyntax(timeRange: string): boolean {
 
     // checking for right amount of digits in each hour and minute
     if (hour1.length !=2 || minutes1.length != 2 || hour2.length !=2 || minutes2.length != 2)
-    return false
+        return false
+    // checks for non-digit characters on the vars that might have been missed. 
+    if ( !/^\d+$/.test(hour1) || !/^\d+$/.test(hour2) || !/^\d+$/.test(minutes1) || !/^\d+$/.test(minutes2))
+        return false
 
     return true;
 }
