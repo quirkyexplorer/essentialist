@@ -12,6 +12,40 @@ function parseOperator(value: string) {
     return 
 }
 
+function evaluateNots(value: string) {
+    return !parseBoolean(value);
+}
+
+function evaluateAnds(array: string[]) {
+    
+    if (array[0] == "TRUE" && array[2] == "TRUE") {
+        return true
+    }
+
+    if (array[0] == "FALSE" && array[2] == "FALSE") {
+        return false
+    }
+
+    if (array[0] != array[2]) {
+        return false
+    }
+}
+
+function evaluateOrs(array: string[]) {
+
+    if (array[0] == "TRUE" || array[2] == "TRUE") {
+        return true
+    }
+
+    if (array[0] == "FALSE" || array[2] == "FALSE") {
+        return false
+    }
+
+    if (array[0] != array[2]) {
+        return true
+    }
+}
+
 export function EvaluateBoolean(value: string) {
 
     const array = value.split(' ')
@@ -21,22 +55,18 @@ export function EvaluateBoolean(value: string) {
         return !parseBoolean(array[1]);
     }
 
-    if (array.includes("AND")) {
-        if (array[0] == "TRUE" && array[2] == "TRUE") {
-            return true
-        }
-
-        if (array[0] == "FALSE" && array[2] == "FALSE") {
-            return false
-        }
-
-        if (array[0] != array[2]) {
-            return false
-        }
-
+    else if (array.includes("AND")) {
+        return evaluateAnds(array);
     }
 
+    else if (array.includes("OR")) {
+        return evaluateOrs(array);
+    }
 
     return parseBoolean(value);
 
 }
+
+
+    
+

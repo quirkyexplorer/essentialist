@@ -49,4 +49,27 @@ describe('boolean calculator', () => {
     expect(result).toBe(false);
   })
 
+  it('knows TRUE OR TRUE to be true',() =>{
+
+    const result = EvaluateBoolean("TRUE OR TRUE");
+    expect(result).toBe(true);
+  })
+
+  it('knows TRUE OR FALSE to be true',() =>{
+
+    const result = EvaluateBoolean("TRUE OR FALSE");
+    expect(result).toBe(true);
+  })
+
+  it('knows FALSE OR TRUE to be true',() =>{
+
+    const result = EvaluateBoolean("FALSE OR TRUE");
+    expect(result).toBe(true);
+  })
+  
+  it('knows FALSE OR FALSE to be true',() =>{
+
+    const result = EvaluateBoolean("FALSE OR FALSE");
+    expect(result).toBe(false);
+  })
 })
