@@ -26,6 +26,10 @@ export function EvaluateBoolean(value: string) {
             return true
         }
 
+        if (array[0] == "FALSE" && array[2] == "FALSE") {
+            return false
+        }
+
     }
 
 

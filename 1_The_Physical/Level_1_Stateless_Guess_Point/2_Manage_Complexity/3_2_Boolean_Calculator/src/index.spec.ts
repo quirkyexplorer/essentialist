@@ -31,5 +31,10 @@ describe('boolean calculator', () => {
     expect(result).toBe(true);
   })
 
+  it('FALSE AND FALSE to be false',() =>{
+
+    const result = EvaluateBoolean("FALSE AND FALSE ");
+    expect(result).toBe(false);
+  })
 
 })
