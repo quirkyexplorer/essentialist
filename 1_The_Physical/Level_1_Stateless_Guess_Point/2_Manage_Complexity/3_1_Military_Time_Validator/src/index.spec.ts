@@ -21,6 +21,7 @@ const validTimeCases: {time: string; answer: boolean}[] = [
     time: '00:59 - 01:00',
     answer: true 
     },
+
     
 ]
 
@@ -35,7 +36,11 @@ const invalidTimeCases: {time: string; answer: boolean}[] = [
         answer: false 
     },
     { 
-        time: '05:06 - 6:60',
+        time: '05:06 - 06:60',
+        answer: false 
+    },
+    { 
+        time: '05:61 - 06:10',
         answer: false 
     },
     { 
@@ -46,13 +51,18 @@ const invalidTimeCases: {time: string; answer: boolean}[] = [
         time: '05:06 - 05:05',
         answer: false 
     },
+
+    { 
+        time: '05:06 - 05:06',
+        answer: false 
+    },
     
 ]
 
 
 const wrongFormatCases: {time: string; answer: boolean}[] = [
     { 
-        time: '5:06 - 07:06',
+        time: '1:06 - 12:06',
         answer: false
     },
     { 
@@ -81,6 +91,10 @@ const wrongFormatCases: {time: string; answer: boolean}[] = [
     },
     { 
         time: ' - 0000:1:02',
+        answer: false
+    },
+    { 
+        time: '05:06 - 06:500',
         answer: false
     },
 ]
