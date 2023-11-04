@@ -21,6 +21,13 @@ export function EvaluateBoolean(value: string) {
         return !parseBoolean(array[1]);
     }
 
+    if (array.includes("AND")) {
+        if (array[0] == "TRUE" && array[2] == "TRUE") {
+            return true
+        }
+
+    }
+
 
     return parseBoolean(value);
 

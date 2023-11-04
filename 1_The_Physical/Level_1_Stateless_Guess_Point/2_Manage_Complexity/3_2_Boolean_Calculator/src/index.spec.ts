@@ -25,5 +25,11 @@ describe('boolean calculator', () => {
     expect(result).toBe(true);
   })
 
+  it('TRUE AND TRUE to be true',() =>{
+
+    const result = EvaluateBoolean("TRUE AND TRUE");
+    expect(result).toBe(true);
+  })
+
 
 })
