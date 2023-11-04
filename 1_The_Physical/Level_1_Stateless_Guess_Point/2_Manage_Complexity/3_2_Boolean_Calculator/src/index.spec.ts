@@ -19,5 +19,11 @@ describe('boolean calculator', () => {
     expect(result).toBe(false);
   })
 
+  it('knows NOT FALSE to be true',() =>{
+
+    const result = EvaluateBoolean("NOT FALSE");
+    expect(result).toBe(true);
+  })
+
 
 })
