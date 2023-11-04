@@ -20,6 +20,11 @@ Parentheses
 
 "(TRUE OR TRUE OR TRUE) AND FALSE" -> false "NOT (TRUE AND TRUE)" -> false
 
+Order of precedence
+NOT
+AND
+OR
+
 responsibilities: 
 
 a function to parse through the string and find all individual words. extract them 
