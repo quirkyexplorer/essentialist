@@ -1,6 +1,8 @@
 import {EvaluateBoolean} from "./index"
 
-describe('boolean calculator', () => {
+
+
+describe('tests simple statements', () => {
   it('knows TRUE to be true',() =>{
 
     const result = EvaluateBoolean("TRUE");
@@ -33,7 +35,7 @@ describe('boolean calculator', () => {
 
   it('FALSE AND FALSE to be false',() =>{
 
-    const result = EvaluateBoolean("FALSE AND FALSE ");
+    const result = EvaluateBoolean("FALSE AND FALSE");
     expect(result).toBe(false);
   })
 
@@ -72,4 +74,23 @@ describe('boolean calculator', () => {
     const result = EvaluateBoolean("FALSE OR FALSE");
     expect(result).toBe(false);
   })
+
+  
+})
+
+
+describe('tests compound statements', () => {
+
+    it('knows FALSE AND FALSE AND TRUE to be FALSE',() =>{
+
+        const result = EvaluateBoolean("FALSE AND FALSE AND FALSE");
+        expect(result).toBe(false);
+    })
+
+    it('knows FALSE OR TRUE AND TRUE to be FALSE',() =>{
+
+        const result = EvaluateBoolean("FALSE OR TRUE AND TRUE");
+        expect(result).toBe(true);
+    })
+
 })
