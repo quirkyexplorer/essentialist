@@ -11,7 +11,8 @@ function evaluateNots(value: string) {
     return !parseBoolean(value);
 }
 
-function evaluateAnds(array: string[]) {
+function evaluateAnds(string: string):any {
+    const array = string.split(' ');
     
     if (array[0] == "TRUE" && array[2] == "TRUE") {
         return "TRUE"
@@ -26,7 +27,8 @@ function evaluateAnds(array: string[]) {
     }
 }
 
-function evaluateOrs(array: string[]) {
+function evaluateOrs(string: string):any {
+    const array = string.split(' ');
 
     if (array[0] == "TRUE" || array[2] == "TRUE") {
         return "TRUE"
@@ -41,35 +43,37 @@ function evaluateOrs(array: string[]) {
     }
 }
 
-// function statementBreaker(array: string[]) {
-//     const and = "AND";
-//     let index = array.indexOf(and);
-//     let element = array[array.indexOf(and)];
-//     const statement = array[index - 1] + " " + element + " " + array[index + 1];
-//     console.log(EvaluateBoolean(statement));
-//     return statement
-// }
-
-function evaluateAndsOrs(statement: string):any {
-    const array = statement.split(' ')
-    if (array.includes("AND") && array.length == 3) {
-        return evaluateAnds(array);
-    }
-
-    else if (array.includes("OR") && array.length == 3) {
-        return evaluateOrs(array);
-    }
-}
 
 function booleanReducer(array: string[]):any {
     let i = 0;
-    let string = ''
-    while (array.length >= 3) {
-        string =  `${array[i]} ${array[i + 1]} ${array[i + 2]}`;
-        array.splice(0,3);
-        array.unshift(evaluateAndsOrs(string));
-        i += i;
+    let j = 0;
+
+    while(j <= array.length && array.includes("AND")) {
+        let string =  `${array[j]} ${array[j + 1]} ${array[j + 2]}`;
+
+        if (string.includes("AND")) {
+            let andIndex = array.indexOf("AND");
+            let start = andIndex - 1;
+            let end = andIndex + 2;
+            array.splice(start, end);
+            array.splice(start, 0, evaluateAnds(string));
+        }
+        j = j + 2;
     }
+
+    while (i <= array.length && array.includes("OR")) {
+        let string =  `${array[i]} ${array[i + 1]} ${array[i + 2]}`;
+        if (string.includes("OR")) {
+            let andIndex = array.indexOf("OR");
+            let start = andIndex - 1;
+            let end = andIndex + 2;
+            array.splice(start, end);
+            array.splice(start, 0, evaluateOrs(string));     
+        }
+        
+        i = i + 2;
+    }
+
     return array;
 }
 
@@ -87,14 +91,7 @@ export function EvaluateBoolean(value: string) {
         return parseBoolean(answer);
     }
 
-    return parseBoolean(value);
-
-}
-
-function rearrangeOrder() {
-
-// this function should rearrange the array in statements so that 
-// ANDs come before ORs
+    // return parseBoolean(value);
 
 }
 
