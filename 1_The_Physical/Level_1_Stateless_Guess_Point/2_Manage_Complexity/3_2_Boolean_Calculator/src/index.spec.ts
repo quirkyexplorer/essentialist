@@ -1,7 +1,5 @@
 import {EvaluateBoolean} from "./index"
 
-
-
 describe('tests simple statements', () => {
 
   it('knows TRUE to be true',() =>{
@@ -105,7 +103,8 @@ describe('tests compound statements', () => {
         const result = EvaluateBoolean("TRUE OR TRUE OR TRUE AND FALSE");
         expect(result).toBe(true);
     })
-
+    
+    //FIX ME//
     it('knows FALSE OR FALSE AND TRUE OR FALSE AND FALSE to be FALSE',() =>{
 
         const result = EvaluateBoolean("FALSE OR FALSE AND TRUE OR FALSE AND FALSE");
@@ -117,5 +116,11 @@ describe('tests compound statements', () => {
         const result = EvaluateBoolean("TRUE OR FALSE AND NOT FALSE");
         expect(result).toBe(true);
     })
+
+    // //FIX ME//
+    // it('it knows (TRUE OR TRUE OR TRUE) AND FALSE to be false',() =>{
+    //     const result = EvaluateBoolean("(TRUE OR TRUE OR TRUE) AND FALSE");
+    //     expect(result).toBe(false);
+    // })
 
 })
