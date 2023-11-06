@@ -7,8 +7,12 @@ function parseBoolean(value: string) {
 
 }
 
-function evaluateNots(value: string) {
-    return !parseBoolean(value);
+function evaluateNots(value: string):any {
+    if( value == "NOT TRUE") 
+        return "FALSE"
+
+    else if (value == "NOT FALSE")
+        return "TRUE"
 }
 
 function evaluateAnds(string: string):any {
@@ -44,9 +48,26 @@ function evaluateOrs(string: string):any {
 }
 
 
+
 function booleanReducer(array: string[]):any {
     let i = 0;
     let j = 0;
+    let a = 0;
+
+    while(a <= array.length && array.includes("NOT")) {
+        let string =  `${array[a]} ${array[a + 1]}`;
+        console.log(string);
+        if(string.includes("NOT")) {
+            let andIndex = array.indexOf("NOT");
+            let end = andIndex + 2;
+            console.log(evaluateNots(string));
+            array.splice(andIndex, end, evaluateNots(string));
+            // console.log(array)
+            // array.splice(andIndex, 0, evaluateNots(string));
+        }
+        
+        a = a + 2;  
+    }
 
     while(j <= array.length && array.includes("AND")) {
         let string =  `${array[j]} ${array[j + 1]} ${array[j + 2]}`;
@@ -70,7 +91,6 @@ function booleanReducer(array: string[]):any {
             array.splice(start, end);
             array.splice(start, 0, evaluateOrs(string));     
         }
-        
         i = i + 2;
     }
 
@@ -81,11 +101,11 @@ export function EvaluateBoolean(value: string) {
 
     const array = value.split(' ')
     
-    if (array[0] == "NOT") {
-        return !parseBoolean(array[1]);
-    }
+    // if (array[0] == "NOT") {
+    //     return !parseBoolean(array[1]);
+    // }
     
-    else if (array) {
+    if (array) {
         const resultArray = booleanReducer(array);
         const answer = resultArray[0];
         return parseBoolean(answer);
