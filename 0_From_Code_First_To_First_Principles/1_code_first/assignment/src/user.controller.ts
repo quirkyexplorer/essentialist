@@ -9,6 +9,8 @@ export const createUser = async (req: Request, res: Response) => {
   try {
     const user = await UserModel.create({ email, first_name, last_name, username });
     res.status(201).json(user);
+
+    
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: 'Failed to create user' });
